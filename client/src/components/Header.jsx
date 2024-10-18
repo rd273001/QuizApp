@@ -4,7 +4,7 @@ import { FaSignInAlt } from 'react-icons/fa';
 
 const Header = () => {
   return (
-    <nav className='bg-blue-600 px-4 py-3 md:py-4 shadow-md shadow-black/35 drop-shadow'>
+    <nav className='bg-blue-950 px-4 py-3 md:py-4 shadow-md shadow-black/35 drop-shadow'>
       <div className='flex justify-between items-center'>
         <Link to='/' className='text-white font-bold text-2xl'>QuizApp</Link>
         <div className='flex gap-x-5 items-center'>
