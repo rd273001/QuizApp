@@ -17,10 +17,11 @@ exports.register = async ( req, res ) => {
 exports.login = async ( req, res ) => {
   try {
     const user = await User.findOne( { username: req.body.username } );
-    
+    // Check if the user does not exist or if the password is incorrect
     if ( !user || !( await bcrypt.compare( req.body.password, user.password ) ) ) {
       return res.status( 401 ).send( { message: 'Invalid username or password!' } );
     }
+    // If the user is valid, create a JWT token with the user's ID
     const token = jwt.sign( { _id: user._id }, process.env.JWT_SECRET );
     res.send( { user, token } );
   } catch ( error ) {

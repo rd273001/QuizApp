@@ -33,3 +33,24 @@ exports.getQuizById = async ( req, res ) => {
     res.status( 500 ).send( error );
   }
 };
+
+// Controller to submit answers for a specific quiz by ID
+exports.submitQuizAnswers = async ( req, res ) => {
+  try {
+    const quiz = await Quiz.findById( req.params.id );
+    if ( !quiz ) {
+      return res.status( 404 ).send();
+    }
+    const userAnswers = req.body.answers;
+    // map through the quiz questions to determine which answers are correct
+    const results = quiz.questions.map( ( q, index ) => ( {
+      question: q.question,
+      correct: q.correctAnswer === userAnswers[index],
+    } ) );
+    // calculate the score based on the number of correct answers
+    const score = results.filter( r => r.correct ).length;
+    res.send( { score, total: quiz.questions.length, results } );
+  } catch ( error ) {
+    res.status( 500 ).send( error );
+  }
+};
