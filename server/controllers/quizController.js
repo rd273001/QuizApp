@@ -5,9 +5,9 @@ exports.createQuiz = async ( req, res ) => {
   try {
     const quiz = new Quiz( req.body );
     await quiz.save();
-    res.status( 201 ).send( quiz );
+    res.status( 201 ).json( { message: 'Quiz created successfully' } );
   } catch ( error ) {
-    res.status( 400 ).send( error );
+    res.status( 500 ).json( { message: 'Failed to create quiz' } );
   }
 };
 
@@ -15,9 +15,9 @@ exports.createQuiz = async ( req, res ) => {
 exports.getAllQuizTitles = async ( req, res ) => {
   try {
     const quizzes = await Quiz.find( {}, 'title' );
-    res.send( quizzes );
+    res.json( quizzes );
   } catch ( error ) {
-    res.status( 500 ).send( error );
+    res.status( 500 ).json( error );
   }
 };
 
@@ -26,11 +26,11 @@ exports.getQuizById = async ( req, res ) => {
   try {
     const quiz = await Quiz.findById( req.params.id );
     if ( !quiz ) {
-      return res.status( 404 ).send();
+      return res.status( 404 ).json( { message: 'Quiz not found' } );
     }
-    res.send( quiz );
+    res.json( quiz );
   } catch ( error ) {
-    res.status( 500 ).send( error );
+    res.status( 500 ).json( error );
   }
 };
 
@@ -39,7 +39,7 @@ exports.submitQuizAnswers = async ( req, res ) => {
   try {
     const quiz = await Quiz.findById( req.params.id );
     if ( !quiz ) {
-      return res.status( 404 ).send();
+      return res.status( 404 ).json( { message: "Quiz not found" } );
     }
     const userAnswers = req.body.answers;
     // map through the quiz questions to determine which answers are correct
@@ -49,8 +49,8 @@ exports.submitQuizAnswers = async ( req, res ) => {
     } ) );
     // calculate the score based on the number of correct answers
     const score = results.filter( r => r.correct ).length;
-    res.send( { score, total: quiz.questions.length, results } );
+    res.json( { score, total: quiz.questions.length, results } );
   } catch ( error ) {
-    res.status( 500 ).send( error );
+    res.status( 500 ).json( error );
   }
 };

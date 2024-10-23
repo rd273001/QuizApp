@@ -1,18 +1,17 @@
 const express = require( 'express' );
 const router = express.Router();
 const { createQuiz, getAllQuizTitles, getQuizById, submitQuizAnswers } = require( '../controllers/quizController' );
-const auth = require( '../middlewares/auth' );
 
 // endpoint to create a new quiz
-router.post( '/', auth, createQuiz );
+router.post( '/create', createQuiz );
 
 // endpoint to retrieve all quiz titles
-router.get( '/', auth, getAllQuizTitles );
+router.get( '/all', getAllQuizTitles );
 
 // endpoint to retrieve a specific quiz by ID
-router.get( '/:id', auth, getQuizById );
+router.get( '/:id', getQuizById );
 
 // endpoint to submit answers for a specific quiz by ID
-router.post( '/:id/submit', auth, submitQuizAnswers );
+router.post( '/:id/submit', submitQuizAnswers );
 
 module.exports = router;

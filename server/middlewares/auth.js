@@ -8,7 +8,7 @@ const auth = async ( req, res, next ) => {
     // verify token using JWT_SECRET
     const decoded = jwt.verify( token, process.env.JWT_SECRET );
     // find user associated with the token
-    const user = await User.findOne( { _id: decoded._id } );
+    const user = await User.findById( { _id: decoded._id } );
 
     if ( !user ) {
       throw new Error();

@@ -5,26 +5,43 @@ const jwt = require( 'jsonwebtoken' );
 // Controller for user registration
 exports.register = async ( req, res ) => {
   try {
+    // Check if the user already exists
+    const existingUser = await User.findOne( { email } );
+    if ( existingUser ) {
+      return res.status( 409 ).json( { message: 'User  already exists' } );
+    }
     const user = new User( req.body );
+    // password will be hashed before saving User as pre() hook is applied on User schema for save
     await user.save();
-    res.status( 201 ).send( { message: 'User registered successfully' } );
+    res.status( 201 ).json( { message: 'User registered successfully' } );
   } catch ( error ) {
-    res.status( 400 ).send( error );
+    res.status( 500 ).json( { message: 'Internal server error', error } );
   }
 };
 
 // Controller for user login
 exports.login = async ( req, res ) => {
+  const { email, password } = req.body;
   try {
-    const user = await User.findOne( { username: req.body.username } );
+    const user = await User.findOne( { email } );
     // Check if the user does not exist or if the password is incorrect
-    if ( !user || !( await bcrypt.compare( req.body.password, user.password ) ) ) {
-      return res.status( 401 ).send( { message: 'Invalid username or password!' } );
+    if ( !user || !( await bcrypt.compare( password, user.password ) ) ) {
+      return res.status( 401 ).json( { message: 'Invalid email or password' } );
     }
     // If the user is valid, create a JWT token with the user's ID
     const token = jwt.sign( { _id: user._id }, process.env.JWT_SECRET );
-    res.send( { user, token } );
+    res.json( { user: { name: user.name, email: user.email }, token } );
   } catch ( error ) {
-    res.status( 400 ).send( error );
+    res.status( 400 ).json( error );
+  }
+};
+
+// Controller for user restoration if token exists(when User did not logout before closing)
+exports.restoreUser = async ( req, res ) => {
+  try {
+    const user = req.user; // The user will be attached by the auth middleware
+    res.status( 200 ).json( { user: { name: user.name, email: user.email } } );
+  } catch ( error ) {
+    res.status( 500 ).json( { message: 'Failed to restore user session', error: error.message } );
   }
 };

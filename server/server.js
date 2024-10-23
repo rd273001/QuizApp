@@ -3,6 +3,7 @@ const mongoose = require( 'mongoose' );
 const cors = require( 'cors' );
 const authRoutes = require( './routes/authRoutes' );
 const quizRoutes = require( './routes/quizRoutes' );
+const auth = require( './middlewares/auth' );
 require( 'dotenv' ).config();
 
 const app = express();
@@ -17,8 +18,8 @@ mongoose.connect( process.env.MONGODB_URI )
   .catch( ( err ) => console.error( 'MongoDB connection error:', err ) );
 
 // Routes
-app.use( '/api/auth', authRoutes );
-app.use( '/api/quiz', quizRoutes );
+app.use( '/auth', authRoutes );
+app.use( '/quiz', auth, quizRoutes );
 
 // Error handling middleware
 app.use( ( err, req, res, next ) => {
