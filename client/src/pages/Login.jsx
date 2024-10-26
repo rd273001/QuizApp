@@ -33,7 +33,7 @@ const Login = () => {
     onSuccess: ( data ) => {
       loginUser( data );
       toast.success( 'Logged in successfully' );
-      navigate( '/quizzes' );
+      navigate( '/quizzes', { replace: true } );
     },
     onError: ( error ) => {
       toast.error( error.response?.data?.message || 'Login failed' );
@@ -48,7 +48,7 @@ const Login = () => {
     <div className='flex-1 p-4 flex flex-col bg-slate-100'>
       <form onSubmit={ handleSubmit( onSubmit ) } className='flex flex-col gap-y-4 w-full lg:w-1/2 md:w-2/3 m-auto'>
         <fieldset className='border border-black/15 shadow-lg shadow-black/35 p-4 rounded-2xl bg-white'>
-          <legend className='text-2xl font-bold mb-3 text-blue-800'>LOGIN</legend>
+          <legend className='text-2xl font-bold mb-3 text-blue-800'>Sign In</legend>
           <div className='mb-5'>
             <label htmlFor='email' className='block mb-1 font-bold'>
               Email
@@ -57,6 +57,7 @@ const Login = () => {
               { ...register( 'email' ) }
               type='email'
               placeholder='Enter your email'
+              autoComplete='email'
               className='w-full px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400 focus:invalid:ring-red-500 border border-slate-300 rounded invalid:border-red-500 invalid:text-red-500'
             />
             <p className='mt-1 text-red-500 text-sm'>{ errors?.email?.message }</p>
@@ -69,6 +70,7 @@ const Login = () => {
               { ...register( 'password' ) }
               type='password'
               placeholder='Enter your password'
+              autoComplete='current-password'
               className='w-full px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400 focus:invalid:ring-red-500 border border-slate-300 rounded invalid:border-red-500 invalid:text-red-500'
             />
             <p className='mt-1 text-red-500 text-sm'>{ errors?.password?.message }</p>

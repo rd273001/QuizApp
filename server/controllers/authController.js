@@ -8,7 +8,7 @@ exports.register = async ( req, res ) => {
     // Check if the user already exists
     const existingUser = await User.findOne( { email } );
     if ( existingUser ) {
-      return res.status( 409 ).json( { message: 'User  already exists' } );
+      return res.status( 409 ).json( { message: 'Email  already exists' } );
     }
     const user = new User( req.body );
     // password will be hashed before saving User as pre() hook is applied on User schema for save
