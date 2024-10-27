@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '../services/authService';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
+import PrimaryButton from '../commons/PrimaryButton';
 
 const loginSchema = z.object( {
   email: z.string().email( { message: 'Invalid email address' } ),
@@ -45,11 +46,11 @@ const Login = () => {
   };
 
   return (
-    <div className='flex-1 p-4 flex flex-col bg-slate-100'>
-      <form onSubmit={ handleSubmit( onSubmit ) } className='flex flex-col gap-y-4 w-full lg:w-1/2 md:w-2/3 m-auto'>
+    <div className='flex-1 flex flex-col p-4 bg-slate-100'>
+      <form onSubmit={ handleSubmit( onSubmit ) } className='w-full lg:w-1/2 md:w-2/3 m-auto'>
         <fieldset className='border border-black/15 shadow-lg shadow-black/35 p-4 rounded-2xl bg-white'>
-          <legend className='text-2xl font-bold mb-3 text-blue-800'>Sign In</legend>
-          <div className='mb-5'>
+          <legend className='text-2xl font-bold mb-3 text-blue-800'>Login</legend>
+          <div className='mb-4'>
             <label htmlFor='email' className='block mb-1 font-bold'>
               Email
             </label>
@@ -62,7 +63,7 @@ const Login = () => {
             />
             <p className='mt-1 text-red-500 text-sm'>{ errors?.email?.message }</p>
           </div>
-          <div className='mb-5'>
+          <div className='mb-7'>
             <label htmlFor='password' className='block mb-1 font-bold'>
               Password
             </label>
@@ -75,13 +76,18 @@ const Login = () => {
             />
             <p className='mt-1 text-red-500 text-sm'>{ errors?.password?.message }</p>
           </div>
-          <button
-            type='submit'
-            className='mt-8 min-w-[40%] flex justify-center mx-auto bg-blue-900 text-white py-2 px-4 rounded-lg enabled:hover:bg-blue-950 enabled:active:scale-95 disabled:cursor-not-allowed disabled:opacity-60'
+
+          <PrimaryButton
             disabled={ loginMutation.isPending }
-          >
-            { loginMutation.isPending ? 'Logging in...' : 'Login' }
-          </button>
+            btnText={ loginMutation.isPending ? 'Logging in...' : 'Login' }
+          />
+
+          <p className='text-center text-sm mt-6 text-gray-500'>
+            { `Don't have an account? ` }
+            <Link to='/register' className='text-blue-600 active:bg-blue-200 hover:underline'>
+              Register
+            </Link>
+          </p>
         </fieldset>
       </form>
     </div>

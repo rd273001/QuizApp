@@ -1,11 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { register as registerUser } from '../services/authService';
 import { toast } from 'react-toastify';
+import PrimaryButton from '../commons/PrimaryButton';
 
 const registerSchema = z.object( {
   name: z.string().min( 3, 'Name must be at least 3 characters' ),
@@ -66,7 +67,7 @@ const Register = () => {
             />
             <p className='text-red-500 text-sm mt-1'>{ errors?.email?.message }</p>
           </div>
-          <div className='mb-4'>
+          <div className='mb-7'>
             <label htmlFor='password' className='block mb-1 font-bold'>
               Password
             </label>
@@ -79,14 +80,19 @@ const Register = () => {
             />
             <p className='text-red-500 text-sm mt-1'>{ errors?.password?.message }</p>
           </div>
-          <button
-            type='submit'
-            className='mt-8 min-w-[40%] flex justify-center mx-auto bg-blue-900 text-white py-2 px-4 rounded-lg enabled:hover:bg-blue-950 enabled:active:scale-95 disabled:cursor-not-allowed disabled:opacity-60'
+          <PrimaryButton
             disabled={ registerMutation.isPending }
-          >
-            { registerMutation.isPending ? 'Registering...' : 'Register' }
-          </button>
+            btnText={ registerMutation.isPending ? 'Registering...' : 'Register' }
+          />
+
+          <p className='text-center text-sm mt-6 text-gray-500'>
+            { `Already have an account? ` }
+            <Link to='/login' className='text-blue-600 active:bg-blue-200 hover:underline'>
+              Login
+            </Link>
+          </p>
         </fieldset>
+
       </form>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { restoreUser } from '../services/authService';
 
@@ -30,18 +30,18 @@ export const AuthProvider = ( { children } ) => {
     }
   }, [refetch] );
 
-  const login = ( userData ) => {
+  const login = useCallback( ( userData ) => {
     setUser( userData.user );
     localStorage.setItem( 'token', userData.token ); // store token in localStorage
-  };
+  }, [] );
 
-  const logout = () => {
+  const logout = useCallback( () => {
     setUser( null );
     localStorage.removeItem( 'token' );
-  };
+  }, [] );
 
   // Truthy/falsy value for user is authenticated or not
-  const isAuthenticated = () => !!user;
+  const isAuthenticated = useMemo( () => !!user, [user] );
 
   return (
     <AuthContext.Provider value={ { user, login, logout, isAuthenticated } }>

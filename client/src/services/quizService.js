@@ -15,7 +15,4 @@ export const getQuizDetails = async ( id ) => {
   return response.data;
 };
 
-export const submitQuiz = async ( { id, answers } ) => {
-  const response = await axiosInstance.post( `/quiz/${ id }/submit`, { answers } );
-  return response.data;
-};
+export const submitQuiz = ( { id, answers } ) => axiosInstance.post( `/quiz/${ id }/submit`, { answers } );
