@@ -4,6 +4,7 @@ const jwt = require( 'jsonwebtoken' );
 
 // Controller for user registration
 exports.register = async ( req, res ) => {
+  const { email } = req.body;
   try {
     // Check if the user already exists
     const existingUser = await User.findOne( { email } );
@@ -15,7 +16,7 @@ exports.register = async ( req, res ) => {
     await user.save();
     res.status( 201 ).json( { message: 'User registered successfully' } );
   } catch ( error ) {
-    res.status( 500 ).json( { message: 'Internal server error', error } );
+    res.status( 500 ).json( error );
   }
 };
 
@@ -23,16 +24,16 @@ exports.register = async ( req, res ) => {
 exports.login = async ( req, res ) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne( { email } );
+    const existingUser = await User.findOne( { email } );
     // Check if the user does not exist or if the password is incorrect
-    if ( !user || !( await bcrypt.compare( password, user.password ) ) ) {
+    if ( !existingUser || !( await bcrypt.compare( password, existingUser.password ) ) ) {
       return res.status( 401 ).json( { message: 'Invalid email or password' } );
     }
     // If the user is valid, create a JWT token with the user's ID
-    const token = jwt.sign( { _id: user._id }, process.env.JWT_SECRET );
-    res.json( { user: { name: user.name, email: user.email }, token } );
+    const token = jwt.sign( { _id: existingUser._id }, process.env.JWT_SECRET );
+    res.json( { user: { name: existingUser.name, email: existingUser.email }, token } );
   } catch ( error ) {
-    res.status( 400 ).json( error );
+    res.status( 500 ).json( error );
   }
 };
 
