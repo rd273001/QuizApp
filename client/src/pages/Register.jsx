@@ -52,7 +52,7 @@ const Register = () => {
               autoComplete='name'
               className='w-full px-3 py-2 outline-none focus:ring-2 ring-blue-400 focus:invalid:ring-red-500 invalid:border-red-500 invalid:text-red-500 border border-slate-300 rounded'
             />
-            <p className='text-red-500 text-sm mt-1'>{ errors?.name?.message }</p>
+            <p className='text-red-500 text-xs mt-1'>{ errors?.name?.message }</p>
           </div>
           <div className='mb-4'>
             <label htmlFor='email' className='block mb-1 font-bold'>
@@ -65,7 +65,7 @@ const Register = () => {
               autoComplete='email'
               className='w-full px-3 py-2 outline-none focus:ring-2 ring-blue-400 focus:invalid:ring-red-500 invalid:border-red-500 invalid:text-red-500 border border-slate-300 rounded'
             />
-            <p className='text-red-500 text-sm mt-1'>{ errors?.email?.message }</p>
+            <p className='text-red-500 text-xs mt-1'>{ errors?.email?.message }</p>
           </div>
           <div className='mb-7'>
             <label htmlFor='password' className='block mb-1 font-bold'>
@@ -78,7 +78,7 @@ const Register = () => {
               autoComplete='new-password'
               className='w-full px-3 py-2 outline-none focus:ring-2 ring-blue-400 focus:invalid:ring-red-500 invalid:border-red-500 invalid:text-red-500 border border-slate-300 rounded'
             />
-            <p className='text-red-500 text-sm mt-1'>{ errors?.password?.message }</p>
+            <p className='text-red-500 text-xs mt-1'>{ errors?.password?.message }</p>
           </div>
           <PrimaryButton
             disabled={ registerMutation.isPending }

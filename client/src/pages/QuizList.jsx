@@ -20,7 +20,7 @@ const QuizList = () => {
 
       <div className='flex items-center justify-between'>
         <h2 className='text-xl font-bold'>Available Quizzes</h2>
-        <Link to='/create-quiz' className='flex items-center bg-gradient-blue hover:bg-gradient-blue-hover active:scale-105 text-white px-2 py-1 rounded-lg'>
+        <Link to='/quiz/create' className='flex items-center bg-gradient-blue hover:bg-gradient-blue-hover active:scale-105 text-white px-2 py-1 rounded-lg'>
           <FaPlus className='mr-1' />Create New Quiz
         </Link>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -17,9 +18,10 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className='flex flex-col items-center justify-center h-screen w-full'>
-          <h1 className='text-3xl font-bold mb-4 text-red-500'>Oops! Something went wrong.</h1>
-          <p className='text-xl'>Sorry for the inconvenience. Please try refreshing the page or try again later.</p>
+        <div className='flex flex-col items-center justify-center h-screen w-full font-light text-balance text-center'>
+          <FaExclamationTriangle className='text-red-600 text-4xl' />
+          <h1 className='sm:text-3xl text-2xl font-medium mb-4 text-red-500 mx-auto'>Oops! Something went wrong.</h1>
+          <p className='sm:text-xl text-lg mx-auto'>Sorry for the inconvenience. Please try refreshing the page or try again later.</p>
         </div>
       );
     }

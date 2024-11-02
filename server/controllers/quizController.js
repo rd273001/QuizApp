@@ -39,7 +39,7 @@ exports.submitQuizAnswers = async ( req, res ) => {
   try {
     const quiz = await Quiz.findById( req.params.id );
     if ( !quiz ) {
-      return res.status( 404 ).json( { message: "Quiz not found" } );
+      return res.status( 404 ).json( { message: 'Quiz not found' } );
     }
     const userAnswers = req.body.answers;
     // map through the quiz questions to determine which answers are correct

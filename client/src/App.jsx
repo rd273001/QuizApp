@@ -8,15 +8,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuizList from './pages/QuizList';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import QuizDetails from './pages/QuizDetails';
 import QuizResults from './pages/QuizResults';
 import CreateQuiz from './pages/CreateQuiz';
+import PageNotFound from './components/PageNotFound';
 
 const queryClient = new QueryClient();
 
 const App = () => {
+  const token = localStorage.getItem( 'token' );
   return (
     <QueryClientProvider client={ queryClient }>
       <AuthProvider>
@@ -24,12 +26,15 @@ const App = () => {
           <Routes>
             <Route path='/' element={ <Layout /> }>
               <Route index element={ <Home /> } />
-              <Route path='/login' element={ <Login /> } />
-              <Route path='/register' element={ <Register /> } />
-              <Route path='/quizzes' element={ <ProtectedRoute children={ <QuizList /> } /> } />
-              <Route path='/quiz/:id' element={ <ProtectedRoute children={ <QuizDetails /> } /> } />
-              <Route path='/quiz/:id' element={ <ProtectedRoute children={ <QuizResults /> } /> } />
-              <Route path='/quiz/:id' element={ <ProtectedRoute children={ <CreateQuiz /> } /> } />
+              <Route path='/login' element={ !token ? <Login /> : <Home /> } />
+              <Route path='/register' element={ !token ? <Register /> : <Home /> } />
+              <Route element={ <ProtectedRoute /> }>
+                <Route path='/quizzes' element={ <QuizList /> } />
+                <Route path='/quiz/create' element={ <CreateQuiz /> } />
+                <Route path='/quiz/:id' element={ <QuizDetails /> } />
+                <Route path='/quiz/:id/results' element={ <QuizResults /> } />
+              </Route>
+              <Route path='*' element={ <PageNotFound /> } />
             </Route>
           </Routes>
           <ToastContainer position='bottom-right' limit={ 3 } toastClassName='sm:bottom-3 bottom-[6svh] sm:mb-4 sm:mx-0 mx-2 mb-3 shadow-md shadow-black/60 backdrop-shadow rounded-lg' theme='colored' />
