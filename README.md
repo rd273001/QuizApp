@@ -28,8 +28,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 - **React Toastify** [![React Toastify](https://img.shields.io/badge/React_Toastify-F1D902?logo=react&logoColor=white&labelColor=2e2e2e)](https://fkhadra.github.io/react-toastify/introduction)
 - **Zod** [![Zod](https://img.shields.io/badge/Zod-006b8f?logo=zod&logoColor=white)](https://zod.dev)
 
----
-
 ## Setup Instructions
 
 ### Prerequisites
@@ -89,8 +87,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 
 5. **Access the application by navigating to <http://localhost:3000> in your browser.**
 
----
-
 ## Libraries and Dependencies
 
 ### Backend
@@ -113,8 +109,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 - **axios:** HTTP client used for making API requests to the backend.
 - **react-hook-form:** Library for managing form state and validation.
 
----
-
 ## Folder Structure
 
 ### Backend (server folder)
@@ -130,8 +124,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 - **src/context/:** Provides context for managing global states like authentication.
 - **src/pages/:** Page components for Home, Login, Register, QuizList, etc.
 - **src/services/:** Contains helper functions for making API requests.
-
----
 
 ## API Endpoints
 
@@ -152,8 +144,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 | POST   | `/quiz/create`  | Create a new quiz       |
 | GET    | `/quiz/:id/submit` | Submit quiz & fetch quiz results |
 
----
-
 ## Usage and Workflow
 
 1. User Registration: New users can sign up, and their details are securely stored in MongoDB.
@@ -161,8 +151,6 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 3. Protected Routes: Certain routes (e.g., QuizList, CreateQuiz) are protected and accessible only when logged in.
 4. Quiz Management: Logged-in users can view available quizzes, create new ones, and view detailed quiz results.
 5. Session Restore: If a user has an active session (JWT token), they are redirected away from login/register pages.
-
----
 
 ## Contributing
 
@@ -172,14 +160,8 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 4. Push to the branch: git push origin feature/YourFeature
 5. Open a pull request
 
----
-
 ## License
 
 This project is licensed under the MIT License.
 
----
-
-## Acknowledgments
-
-Special thanks to any contributors, library authors, or tutorials that helped in the creation of this project.
+## Please Star⭐=>🌟 the Repo if you like the Code, UI, or anything about the Project
