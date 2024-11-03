@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <nav className='bg-blue-950 px-4 py-3 md:py-4 shadow-md shadow-black/35 drop-shadow'>
       <div className='flex justify-between items-center'>
-        <Link to='/' className='text-white font-bold text-2xl tracking-wider'>QuizApp</Link>
+        <Link to='/' className='text-white font-bold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-wider'>QuizApp</Link>
         <div className='flex gap-x-5 items-center'>
           { user
             ? <>

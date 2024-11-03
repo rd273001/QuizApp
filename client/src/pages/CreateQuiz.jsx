@@ -41,59 +41,67 @@ const CreateQuiz = () => {
       <h2 className='text-2xl font-bold mb-4'>Create New Quiz</h2>
       <form onSubmit={ handleSubmit( onSubmit ) } className='flex flex-col gap-y-4 w-full'>
         {/* Quiz Title */ }
-        <div>
-          <label htmlFor='title' className='block mb-1'>Quiz Title</label>
+        <div className='-mb-4'>
+          <label htmlFor='title' className='block font-bold text-lg mb-1'>Quiz Title</label>
           <input
             { ...register( 'title', { required: 'Title is required' } ) }
-            className='w-full px-3 py-2 border rounded'
+            className='w-full px-3 py-2 border-2 outline-none focus:border-blue-400 rounded'
           />
           { errors.title && <p className='text-red-500 text-xs'>{ errors.title.message }</p> }
         </div>
 
         {/* Dynamic Questions */ }
-        { fields.map( ( field, index ) => (
-          <div key={ field.id } className='border p-4 rounded mb-2'>
-            <h3 className='font-bold mb-1'>Question { index + 1 }</h3>
-            {/* Question Text */ }
-            <input
-              { ...register( `questions.${ index }.question`, { required: 'Question is required' } ) }
-              className='w-full px-3 py-2 border rounded'
-              placeholder='Enter question'
-            />
-            { errors.questions?.[index]?.question && <p className='text-red-500 text-xs mb-4'>{ errors.questions[index].question.message }</p> }
-
-            {/* Options */ }
-            { [0, 1, 2, 3].map( ( optionIndex ) => (
-              <div key={ optionIndex }>
+        <div className='flex flex-col divide-y-4 gap-y-10 rounded-lg mb-8'>
+          { fields.map( ( field, index ) => (
+            <div key={ field.id } className='flex flex-col gap-y-4'>
+              <div className='mt-6'>
+                <h3 className='font-medium mb-1 underline'>Question { index + 1 }</h3>
+                {/* Question Text */ }
                 <input
-                  { ...register( `questions.${ index }.options.${ optionIndex }`, { required: 'Option is required' } ) }
-                  className='w-full px-3 py-2 border rounded'
-                  placeholder={ `Option ${ optionIndex + 1 }` }
+                  { ...register( `questions.${ index }.question`, { required: 'Question is required' } ) }
+                  className='w-full px-3 py-2 outline-none border-2 focus:border-blue-400 rounded'
+                  placeholder='Enter question'
                 />
-                { errors.questions?.[index]?.options?.[optionIndex] && <p className='text-red-500 text-xs mb-4'>{ errors.questions[index].options[optionIndex].message }</p> }
+                { errors.questions?.[index]?.question && <p className='text-red-500 text-xs'>{ errors.questions[index].question.message }</p> }
               </div>
-            ) ) }
+              {/* Options */ }
+              <div className='flex flex-col gap-y-4'>
+                { [0, 1, 2, 3].map( ( optionIndex ) => (
+                  <div key={ optionIndex }>
+                    <input
+                      { ...register( `questions.${ index }.options.${ optionIndex }`, { required: 'Option is required' } ) }
+                      className='w-full px-3 py-2 outline-none border-2 focus:border-blue-400 rounded'
+                      placeholder={ `Option ${ optionIndex + 1 }` }
+                    />
+                    { errors.questions?.[index]?.options?.[optionIndex] && <p className='text-red-500 text-xs'>{ errors.questions[index].options[optionIndex].message }</p> }
+                  </div>
+                ) ) }
+              </div>
 
-            {/* Correct Answer */ }
-            <select
-              { ...register( `questions.${ index }.correctAnswer`, { required: 'Correct answer is required' } ) }
-              className='w-full px-3 py-2 border rounded'
-            >
-              <option value=''>Select correct answer</option>
-              <option value='0'>Option 1</option>
-              <option value='1'>Option 2</option>
-              <option value='2'>Option 3</option>
-              <option value='3'>Option 4</option>
-            </select>
-            { errors.questions?.[index]?.correctAnswer && <p className='text-red-500 text-xs'>{ errors.questions[index].correctAnswer.message }</p> }
+              {/* Correct Answer */ }
+              <div>
+                <h3 className='font-medium mb-1 underline'>Answer</h3>
+                <select
+                  { ...register( `questions.${ index }.correctAnswer`, { required: 'Correct answer is required' } ) }
+                  className='w-full px-3 py-2 outline-none border-2 focus:border-blue-400 rounded'
+                >
+                  <option value=''>Select correct answer</option>
+                  <option value='0'>Option 1</option>
+                  <option value='1'>Option 2</option>
+                  <option value='2'>Option 3</option>
+                  <option value='3'>Option 4</option>
+                </select>
+                { errors.questions?.[index]?.correctAnswer && <p className='text-red-500 text-xs'>{ errors.questions[index].correctAnswer.message }</p> }
+              </div>
 
-            { index > 0 && (
-              <button type='button' onClick={ () => remove( index ) } className='flex items-center bg-red-500 text-white mt-4 px-2 py-1 rounded'>
-                <FaTrashAlt className='mr-1' /> Remove Question
-              </button>
-            ) }
-          </div>
-        ) ) }
+              { index > 0 && (
+                <button type='button' onClick={ () => remove( index ) } className='flex items-center mr-auto bg-red-500 text-white px-2 py-1 rounded'>
+                  <FaTrashAlt className='mr-1' /> Remove Question
+                </button>
+              ) }
+            </div>
+          ) ) }
+        </div>
 
         <PrimaryButton
           type='button'
