@@ -17,16 +17,7 @@ You can check the live version of the project here : [QuizApp](https://quizapp4.
 
 ## Technologies Used
 
-- **React.js** [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react)](https://react.dev)
-- **Node.js** [![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=nodedotjs&logoColor=white)](https://nodejs.org)
-- **Express.js** [![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white&labelColor=2e2e2e)](https://expressjs.com/)
-- **MongoDB** [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/docs/atlas/)
-- **Mongoose**  [![Mongoose](https://img.shields.io/badge/Mongoose-47A248?logo=mongoose&logoColor=red&labelColor=2e2e2e)](https://mongoosejs.com/)
-- **TanStack Query** [![TanStack Query](https://img.shields.io/badge/TanStack_Query-ff3e00?logo=react%20query&logoColor=white&labelColor=2e2e2e)](https://tanstack.com/query/latest/docs/framework/react/overview)
-- **React Hook Form** [![React Hook Form](https://img.shields.io/badge/React_Hook_Form-%23EC5990.svg?logo=reacthookform&logoColor=white)](https://www.react-hook-form.com/)
-- **React Router** [![React Router](https://img.shields.io/badge/React_Router-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com)
-- **React Toastify** [![React Toastify](https://img.shields.io/badge/React_Toastify-F1D902?logo=react&logoColor=white&labelColor=2e2e2e)](https://fkhadra.github.io/react-toastify/introduction)
-- **Zod** [![Zod](https://img.shields.io/badge/Zod-006b8f?logo=zod&logoColor=white)](https://zod.dev)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://react.dev) &nbsp;&nbsp; [![Node.js](https://img.shields.io/badge/Node.js-6DA55F?logo=nodedotjs&logoColor=white)](https://nodejs.org) &nbsp;&nbsp; [![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white&labelColor=2e2e2e)](https://expressjs.com/) &nbsp;&nbsp; [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/docs/atlas/) &nbsp;&nbsp; [![Mongoose](https://img.shields.io/badge/Mongoose-47A248?logo=mongoose&logoColor=red&labelColor=2e2e2e)](https://mongoosejs.com/) &nbsp;&nbsp; [![TanStack Query](https://img.shields.io/badge/TanStack_Query-ff3e00?logo=react%20query&logoColor=white&labelColor=2e2e2e)](https://tanstack.com/query/latest/docs/framework/react/overview) &nbsp;&nbsp; [![React Hook Form](https://img.shields.io/badge/React_Hook_Form-%23EC5990.svg?logo=reacthookform&logoColor=white)](https://www.react-hook-form.com/) &nbsp;&nbsp; [![React Router](https://img.shields.io/badge/React_Router-CA4245?logo=react-router&logoColor=white)](https://reactrouter.com) &nbsp;&nbsp; [![React Toastify](https://img.shields.io/badge/React_Toastify-F1D902?logo=react&logoColor=white&labelColor=2e2e2e)](https://fkhadra.github.io/react-toastify/introduction) &nbsp;&nbsp; [![Zod](https://img.shields.io/badge/Zod-006b8f?logo=zod&logoColor=white)](https://zod.dev) &nbsp;&nbsp; [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/) &nbsp;&nbsp; [![Axios](https://img.shields.io/badge/axios-671ddf?&logo=axios&logoColor=white)](https://axios-http.com/docs/intro) &nbsp;&nbsp; [![Vite](https://img.shields.io/badge/Vite-B73BFE?logo=vite&logoColor=FFD62E)](https://vite.dev/guide/)
 
 ## Setup Instructions
 
