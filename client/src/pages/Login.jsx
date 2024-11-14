@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,6 +18,8 @@ const Login = () => {
 
   const { login: loginUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { register, handleSubmit, formState: { errors }, } = useForm( {
     resolver: zodResolver( loginSchema ),
     defaultValues: {
@@ -34,7 +36,8 @@ const Login = () => {
     onSuccess: ( data ) => {
       loginUser( data );
       toast.success( 'Logged in successfully', { autoClose: 4000 } );
-      navigate( '/', { replace: true } );
+      const redirectTo = location.state?.redirectTo || '/';  // Get the 'from' location or default to '/'
+      navigate( redirectTo, { replace: true } );
     },
     onError: ( error ) => {
       toast.error( error.response?.data?.message || 'Login failed' );

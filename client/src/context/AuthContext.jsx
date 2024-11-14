@@ -43,8 +43,10 @@ export const AuthProvider = ( { children } ) => {
     toast.success( 'Logged out successfully', { autoClose: 4000 } );
   }, [] );
 
+  const isAuthenticated = useMemo( () => !!token, [token] );
+
   return (
-    <AuthContext.Provider value={ { user, login, logout, token } }>
+    <AuthContext.Provider value={ { user, login, logout, isAuthenticated } }>
       { children }
       { isLoading && <LoadingIndicator /> }
     </AuthContext.Provider>

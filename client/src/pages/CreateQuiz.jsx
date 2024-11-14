@@ -51,7 +51,7 @@ const CreateQuiz = () => {
         </div>
 
         {/* Dynamic Questions */ }
-        <div className='flex flex-col divide-y-4 gap-y-10 rounded-lg mb-8'>
+        <div className='flex flex-col divide-y-4 divide-slate-200 gap-y-10 rounded-lg mb-8'>
           { fields.map( ( field, index ) => (
             <div key={ field.id } className='flex flex-col gap-y-4'>
               <div className='mt-6'>

@@ -14,6 +14,7 @@ import QuizDetails from './pages/QuizDetails';
 import QuizResults from './pages/QuizResults';
 import CreateQuiz from './pages/CreateQuiz';
 import PageNotFound from './components/PageNotFound';
+import PublicRoute from './components/PublicRoute';
 
 const queryClient = new QueryClient();
 
@@ -26,14 +27,19 @@ const App = () => {
           <Routes>
             <Route path='/' element={ <Layout /> }>
               <Route index element={ <Home /> } />
-              <Route path='/login' element={ !token ? <Login /> : <Home /> } />
-              <Route path='/register' element={ !token ? <Register /> : <Home /> } />
+
+              <Route element={ <PublicRoute /> }>
+                <Route path='/login' element={ <Login /> } />
+                <Route path='/register' element={ <Register /> } />
+              </Route>
+
               <Route element={ <ProtectedRoute /> }>
                 <Route path='/quizzes' element={ <QuizList /> } />
                 <Route path='/quiz/create' element={ <CreateQuiz /> } />
                 <Route path='/quiz/:id' element={ <QuizDetails /> } />
                 <Route path='/quiz/:id/results' element={ <QuizResults /> } />
               </Route>
+
               <Route path='*' element={ <PageNotFound /> } />
             </Route>
           </Routes>
